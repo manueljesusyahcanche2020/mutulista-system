@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sistema Mutualista</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',Arial,sans-serif;
+
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://meridamoderna.com/wp-content/uploads/2022/08/Iglesia-de-peto.jpg");
+
+background-size:cover;
+background-position:center;
+}
+
+/* CONTENEDOR */
+
+.container{
+
+width:900px;
+max-width:95%;
+height:520px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+overflow:hidden;
+
+position:relative;
+
+box-shadow:0 25px 50px rgba(0,0,0,0.5);
+
+}
+
+/* FORMULARIOS */
+
+.forms{
+
+display:flex;
+height:100%;
+}
+
+form{
+
+width:50%;
+
+padding:45px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+
+color:white;
+
+}
+
+form h2{
+
+text-align:center;
+margin-bottom:20px;
+
+color:#ffd54f;
+
+}
+
+/* INPUTS */
+
+label{
+
+font-size:0.85rem;
+margin-bottom:5px;
+
+}
+
+input{
+
+padding:12px;
+
+border:none;
+
+border-radius:8px;
+
+margin-bottom:15px;
+
+background:rgba(255,255,255,0.2);
+
+color:white;
+
+}
+
+input::placeholder{
+
+color:rgba(255,255,255,0.7);
+
+}
+
+/* BOTONES */
+
+button{
+
+padding:12px;
+
+border:none;
+
+border-radius:8px;
+
+background:#2ecc71;
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#27ae60;
+transform:scale(1.05);
+
+}
+
+/* PANEL */
+
+.overlay{
+
+position:absolute;
+
+top:0;
+left:50%;
+
+width:50%;
+height:100%;
+
+background:linear-gradient(135deg,#14532d,#064e3b);
+
+display:flex;
+flex-direction:column;
+
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+color:white;
+
+cursor:pointer;
+
+transition:.6s cubic-bezier(.68,-0.55,.27,1.55);
+
+}
+
+.overlay h2{
+
+margin-bottom:10px;
+color:#ffd54f;
+
+}
+
+.overlay p{
+
+font-weight:bold;
+text-decoration:underline;
+
+}
+
+.container.active .overlay{
+
+left:0;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.forms{
+
+flex-direction:column;
+
+}
+
+form{
+
+width:100%;
+
+}
+
+.overlay{
+
+display:none;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="container">
+
+<div class="forms">
+
+<!-- LOGIN -->
+
+<form method="POST" action="/login">
+
+<h2>💰 Iniciar sesión</h2>
+
+<label>Correo</label>
+<input type="email" name="email" placeholder="correo@email.com" required>
+
+<label>Contraseña</label>
+<input type="password" name="password" placeholder="Tu contraseña" required>
+
+<button type="submit">Entrar al sistema</button>
+
+</form>
+
+
+<!-- REGISTRO -->
+
+<form method="POST" action="/register">
+
+<h2>🤝 Crear cuenta</h2>
+
+<label>Nombre completo</label>
+<input type="text" name="name" placeholder="Tu nombre" required>
+
+<label>Correo</label>
+<input type="email" name="email" placeholder="correo@email.com" required>
+
+<label>Contraseña</label>
+<input type="password" name="password" placeholder="Crear contraseña" required>
+
+<label>Confirmar contraseña</label>
+<input type="password" name="password_confirmation" placeholder="Repetir contraseña" required>
+
+<button type="submit">Unirme al ahorro</button>
+
+</form>
+
+</div>
+
+<div class="overlay" id="panel">
+
+<h2 id="titulo">¿No eres miembro?</h2>
+<p id="texto">Únete a la mutualista</p>
+
+</div>
+
+</div>
+
+<script>
+
+const container=document.getElementById("container")
+const panel=document.getElementById("panel")
+
+const titulo=document.getElementById("titulo")
+const texto=document.getElementById("texto")
+
+panel.onclick=()=>{
+
+container.classList.toggle("active")
+
+if(container.classList.contains("active")){
+
+titulo.textContent="¿Ya eres miembro?"
+texto.textContent="Entrar al sistema"
+
+}else{
+
+titulo.textContent="¿No eres miembro?"
+texto.textContent="Únete a la mutualista"
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
